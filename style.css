@@ -1,17 +1,82 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #eef3f6;
-  padding: 30px;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
 }
 
-select, button {
-  padding: 8px;
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 40px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.subtitle {
+  text-align: center;
+  opacity: 0.8;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 15px;
+  margin-top: 30px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+.progress {
   font-size: 14px;
-  margin-top: 10px;
+  opacity: 0.7;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.option {
+  background: rgba(255,255,255,0.15);
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.option:hover {
+  background: #1abc9c;
+  color: black;
+}
+
+.option.selected {
+  background: #1abc9c;
+  color: black;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #e74c3c;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #c0392b;
 }
 
 #result {
-  margin-top: 20px;
-  font-weight: bold;
+  text-align: center;
+  margin-top: 25px;
+  font-size: 18px;
 }
 
