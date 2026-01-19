@@ -1,11 +1,17 @@
 body {
-  font-family: Arial;
-  background-color: #eef2f3;
-  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #eef3f6;
+  padding: 30px;
 }
 
-button {
-  padding: 12px;
-  margin: 10px;
-  font-size: 16px;
+select, button {
+  padding: 8px;
+  font-size: 14px;
+  margin-top: 10px;
 }
+
+#result {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
