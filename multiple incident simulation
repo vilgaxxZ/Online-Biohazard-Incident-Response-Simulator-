@@ -1,0 +1,10 @@
+const incidents = [
+  {
+    scenario: "Biohazardous liquid spill in laboratory",
+    correct: "isolate"
+  },
+  {
+    scenario: "PPE tear during pathogen handling",
+    correct: "replace"
+  }
+];
