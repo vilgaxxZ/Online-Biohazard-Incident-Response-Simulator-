@@ -1,15 +1,17 @@
-function respond(action) {
-  let score = 0;
-  let message = "";
-
-  if (action === "report") {
-    score = 95;
-    message = "Correct response. Immediate reporting ensures safety, treatment, and compliance with biosafety protocols.";
-  } else {
-    score = 20;
-    message = "Unsafe and unethical response. Ignoring exposure risks severe health and legal consequences.";
-  }
-
-  document.getElementById("result").innerHTML =
-    `<h3>Safety Score: ${score}/100</h3><p>${message}</p>`;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #eef3f6;
+  padding: 30px;
 }
+
+select, button {
+  padding: 8px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+#result {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
