@@ -1,51 +1,88 @@
-function evaluateResponse() {
+const incidents = [
+  {
+    title: "Needle-stick Injury",
+    description: "A technician is injured by a contaminated needle.",
+    options: ["Report immediately", "Wash hands only", "Ignore incident", "Continue work"],
+    correct: 0
+  },
+  {
+    title: "Biohazard Spill",
+    description: "Infectious liquid spills on lab floor.",
+    options: ["Isolate area", "Cover with tissue", "Ignore spill", "Leave lab"],
+    correct: 0
+  },
+  {
+    title: "PPE Failure",
+    description: "Gloves tear while handling a pathogen.",
+    options: ["Replace PPE", "Continue carefully", "Ignore tear", "Leave lab without reporting"],
+    correct: 0
+  }
+];
 
-  const incident = document.getElementById("incidentSelect").value;
-  const response = document.getElementById("responseSelect").value;
-  let score = 0;
-  let message = "";
+let current = 0;
+let selectedOption = null;
+let totalScore = 0;
 
-  if (incident === "" || response === "") {
-    document.getElementById("result").innerHTML =
-      "⚠ Please select both incident and response.";
+function loadIncident() {
+  document.getElementById("incidentTitle").innerText =
+    incidents[current].title;
+
+  document.getElementById("incidentText").innerText =
+    incidents[current].description;
+
+  document.getElementById("progress").innerText =
+    `Incident ${current + 1} of ${incidents.length}`;
+
+  const optionsDiv = document.getElementById("options");
+  optionsDiv.innerHTML = "";
+
+  incidents[current].options.forEach((opt, index) => {
+    const div = document.createElement("div");
+    div.className = "option";
+    div.innerText = opt;
+    div.onclick = () => selectOption(div, index);
+    optionsDiv.appendChild(div);
+  });
+
+  selectedOption = null;
+}
+
+function selectOption(element, index) {
+  document.querySelectorAll(".option").forEach(opt =>
+    opt.classList.remove("selected"));
+  element.classList.add("selected");
+  selectedOption = index;
+}
+
+function submitResponse() {
+  if (selectedOption === null) {
+    alert("Please select a response.");
     return;
   }
 
-  if (incident === "needle") {
-    if (response === "report") {
-      score = 95;
-      message = "Correct response. Immediate reporting prevents infection risk.";
-    } else {
-      score = 30;
-      message = "Unsafe response. Needle-stick injuries must be reported.";
-    }
+  if (selectedOption === incidents[current].correct) {
+    totalScore += 90;
+  } else {
+    totalScore += 30;
   }
 
-  else if (incident === "spill") {
-    if (response === "isolate") {
-      score = 90;
-      message = "Correct response. Isolating the spill prevents contamination.";
-    } else {
-      score = 25;
-      message = "Incorrect response. Biohazard spills must be isolated immediately.";
-    }
+  current++;
+
+  if (current < incidents.length) {
+    loadIncident();
+  } else {
+    showResult();
   }
-
-  else if (incident === "ppe") {
-    if (response === "replace") {
-      score = 92;
-      message = "Correct response. PPE failure requires immediate replacement.";
-    } else {
-      score = 20;
-      message = "Unsafe behavior. PPE failure increases exposure risk.";
-    }
-  }
-
-  let status = (score >= 80) ? "BIOSAFETY COMPLIANT ✔" : "SAFETY VIOLATION ⚠";
-
-  document.getElementById("result").innerHTML =
-    `<p>Safety Score: ${score}/100</p>
-     <p>${message}</p>
-     <p><strong>${status}</strong></p>`;
 }
 
+function showResult() {
+  let finalScore = Math.round(totalScore / incidents.length);
+  let status = finalScore >= 80 ? "BIOSAFETY COMPLIANT ✔" : "SAFETY VIOLATION ⚠";
+
+  document.querySelector(".card").innerHTML =
+    `<h2>Simulation Complete</h2>
+     <p>Final Safety Score: <strong>${finalScore}/100</strong></p>
+     <p>${status}</p>`;
+}
+
+loadIncident();
