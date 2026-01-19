@@ -1,39 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Biohazard Incident Response Simulator</title>
+  <title>Biohazard Incident Simulator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Biohazard Incident Response Simulator</h1>
+<div class="container">
+  <h1>🧬 Biohazard Incident Response Simulator</h1>
+  <p class="subtitle">Interactive Biosafety & Ethics Training</p>
 
-<!-- Incident Selection -->
-<label>Select Biohazard Incident:</label><br>
-<select id="incidentSelect">
-  <option value="">--Choose Incident--</option>
-  <option value="needle">Needle-stick Injury</option>
-  <option value="spill">Biohazardous Spill</option>
-  <option value="ppe">PPE Failure</option>
-</select>
+  <div class="card">
+    <p class="progress" id="progress"></p>
+    <h2 id="incidentTitle"></h2>
+    <p id="incidentText"></p>
 
-<br><br>
+    <div class="options" id="options"></div>
 
-<!-- Response Selection -->
-<label>Select Your Response:</label><br>
-<select id="responseSelect">
-  <option value="">--Choose Response--</option>
-  <option value="report">Report Immediately</option>
-  <option value="isolate">Isolate Area</option>
-  <option value="replace">Replace PPE</option>
-  <option value="ignore">Ignore Incident</option>
-</select>
+    <button onclick="submitResponse()">Submit Response</button>
+  </div>
 
-<br><br>
-
-<button onclick="evaluateResponse()">Submit Response</button>
-
-<div id="result"></div>
+  <div id="result"></div>
+</div>
 
 <script src="logic.js"></script>
 </body>
